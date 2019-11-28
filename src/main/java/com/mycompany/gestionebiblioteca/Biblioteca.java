@@ -77,25 +77,24 @@ public class Biblioteca {
         this.elencoLibri = elencoLibri;
     }
 
-    public int getLastidLibro() {
-        int ris = 0;
+   public String getListaLibri() {
+        String ris = "";
+            int i=0;
+        for (Libri l : elencoLibri) {
+            i++;
+            ris += i+ ") " +l.getId_Libro()+ ") - " + l.getTitoloLibro()+ " - "
+                    + l.getAutoreLibro() + "\n";
+        }
 
-        int pos = elencoLibri.size() - 1;
-        ris = elencoLibri.size();
-        Libri lastLibro = elencoLibri.get(pos);
-        ris = lastLibro.getId_Libro();
         return ris;
-
     }
 
     public int getLastcodUtente() {
-        int ris = 0;
-
-        int pos = elencoUtenti.size() - 1;
-        Utenti lastUtente = elencoUtenti.get(pos);
-        ris = lastUtente.getCodiceUtente();
-
-        return ris;
+         if (elencoUtenti.size() == 0) {
+            return 0;
+        } else {
+            return elencoUtenti.get(elencoUtenti.size() - 1).getCodiceUtente();
+        }
     }
 
     public ArrayList<Utenti> getElencoUtenti() {
@@ -106,18 +105,16 @@ public class Biblioteca {
         this.elencoUtenti = elencoUtenti;
     }
 
-    public String getListaLibri() {
-        String ris = " ";
-        int i = 0;
-        for (Libri lib : elencoLibri) {
-
-            i++;
-
-            ris += i + ") " + lib.getId_Libro() + ") - " + lib.getTitoloLibro() + " ) - " + lib.getAutoreLibro() + ") - "
-                    + lib.getGenereLibro() + "\n";
-
+    public int getLastId_libro() {
+        int ris = 0;
+        // cerco l'ultimo libro
+        int pos = elencoLibri.size() - 1;
+        if (pos == -1) {
+            return 0;
+        } else {
+            Libri lastlibro = elencoLibri.get(pos);
+            ris = lastlibro.getId_Libro();
         }
-
         return ris;
     }
 
